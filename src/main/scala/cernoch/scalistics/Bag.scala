@@ -134,10 +134,10 @@ object Bag {
 
   /**Very inefficient way of creating a bag */
   def apply[T]
-  (i: Iterable[T])
+    (i: Iterable[T])
   = i.foldLeft(
-    new Bag[T]()
-  )(
-    (h, e) => h.inc(e)
-  )
+      new Bag[T]()
+    )(
+      (h,e) => h.inc(e)
+    )
 }
