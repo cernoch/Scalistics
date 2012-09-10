@@ -3,7 +3,6 @@ package cernoch.scalistics
 import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
-import Interval._
 
 @RunWith(classOf[JUnitRunner])
 class BagTest extends Specification {

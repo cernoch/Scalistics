@@ -16,16 +16,14 @@ trait ProbabilityMassFunction[T] {
 object BigDecStat {
 
   def max[T](i: Iterable[BigDecimal])
-  = min(i.map {
-    -_
-  }) match {
+  = min(i.map { -_ }) match {
     case Some(v) => Some(-v)
     case None => None
   }
 
   def min[T](i: Iterable[BigDecimal])
   = if (i.size == 0) None
-  else
+    else
     Some(i.reduce {
       (a, b) => if (a < b) a else b
     })

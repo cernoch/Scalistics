@@ -22,7 +22,7 @@ package cernoch.scalistics
  * DEALINGS IN THE SOFTWARE.
  */
 
-import collection.immutable.{TreeMap, TreeSet}
+import collection.immutable.TreeMap
 import collection.mutable.LinkedList
 
 
@@ -31,7 +31,6 @@ import collection.mutable.LinkedList
  *
  * @author Radomír Černoch (radomir.cernoch at gmail.com)
  */
-
 class Hist
     [T]
     (val cutPoints: TreeMap[T, BigInt], val above: BigInt)
@@ -68,10 +67,11 @@ class Hist
 
   /**Converts the cutPoints into the list of binCenters */
   def binCenters
-  (midPoint: (T, T) => T)
+    (midPoint: (T, T) => T)
   = cutPoints.size match {
-    case 0 => Nil
-    case 1 => List(num.minus(cutPoints.keys.head, num.one),
+    case 0 => List(num.zero)
+    case 1 => List(
+      num.minus(cutPoints.keys.head, num.one),
       num.plus(cutPoints.keys.head, num.one))
     case _ => {
       var binCenters = new LinkedList[T]()
