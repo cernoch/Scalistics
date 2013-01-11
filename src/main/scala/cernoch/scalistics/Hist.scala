@@ -221,14 +221,6 @@ object Hist {
 
   def main(args: Array[String]) : Unit = {
 
-    def fun(x: Int, y: Int) = (x + y) / 2
-
-    println(Hist(List(0, 1, 2, 3, 4, 5, 6, 7, 8, 9),
-      List(2, 5, 10)).binCenters(fun))
-    println(Hist(List(0, 1, 2, 3, 4, 5, 6, 7, 8, 9),
-      List(2)).binCenters(fun))
-    println(Hist(List(0), List(1)).binCenters(fun))
-    println(Hist(List(1), List(1)).binCenters(fun))
-    println(Hist(List(2), List(1)).binCenters(fun))
+    println(Hist(List(0, 1, 2, 3, 4, 5, 6, 7, 8, 9), 4))
   }
 }
