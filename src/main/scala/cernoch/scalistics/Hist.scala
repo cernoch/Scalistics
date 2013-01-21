@@ -59,10 +59,20 @@ class Hist
     sumCache
   }
 
-  private var sumCache: BigInt = null
+  private var sumCache
+  : BigInt
+  = null
 
-  private def sumCount = cutPoints.values.foldLeft(above) {
-    _ + _
+  private def sumCount
+  = cutPoints.values
+    .foldLeft(above){_ + _}
+  
+  def max
+  = {
+    var max = above
+    for (v <- cutPoints.valuesIterator)
+      if (max < v) max = v
+    max
   }
 
   /**Converts the cutPoints into the list of binCenters */
@@ -198,11 +208,6 @@ object Hist {
   = {
     import numeric._
 
-    val minVal = values.reduce(min(_,_))
-    val maxVal = values.reduce(max(_,_))
-
-    val step = numeric.minus(maxVal, minVal)
-
     def decList
       (togo:Int)
     : List[T]
@@ -213,14 +218,6 @@ object Hist {
           => plus(one,head) :: head :: tail
       }
 
-    val largest :: others = decList(bins)
-    
     decList(bins)
-  }
-
-
-  def main(args: Array[String]) : Unit = {
-
-    println(Hist(List(0, 1, 2, 3, 4, 5, 6, 7, 8, 9), 4))
   }
 }
