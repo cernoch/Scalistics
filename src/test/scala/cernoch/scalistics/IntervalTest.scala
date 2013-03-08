@@ -1,9 +1,9 @@
-package cernoch.scalistics
+package cernoch.scalistics.interval
 
+import Interval._
 import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
-import Interval._
 
 @RunWith(classOf[JUnitRunner])
 class IntervalTest extends Specification {

@@ -1,4 +1,4 @@
-package cernoch.scalistics
+package cernoch.scalistics.interval
 
 /*
  * Copyright (c) 2012 Radomír Černoch (radomir.cernoch at gmail.com)

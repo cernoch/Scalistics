@@ -1,4 +1,4 @@
-package cernoch.scalistics
+package cernoch.scalistics.interval
 
 /*
  * Copyright (c) 2012 Radomír Černoch (radomir.cernoch at gmail.com)
@@ -23,7 +23,7 @@ package cernoch.scalistics
  */
 
 /**
- * Endpoint is a left or a right border of an [[cernoch.scalistics.Interval]]
+ * Endpoint is a left or a right border of an [[Interval]]
  *
  * We distinguish the ''values'' (e.g. -1, 10.3, +∞) and the corresponding
  * ''endpoints'' (e.g. Open(-1), Closed(10.3), PosInfty).
@@ -108,7 +108,7 @@ object Endpoint {
 
 
 /**
- * Endpoint of an [[cernoch.scalistics.Interval]], which is not its member
+ * Endpoint of an [[Interval]], which is not its member
  *
  * For example the interval with open endpoints (2,5) contains values 3 and 4.
  *
@@ -136,7 +136,7 @@ object Open {
 
 
 /**
- * Endpoint of an [[cernoch.scalistics.Interval]], which is its member
+ * Endpoint of an [[Interval]], which is its member
  *
  * For example the interval with closed endpoints [1,3]
  * contains values 1, 2 and 3.
@@ -165,7 +165,8 @@ object Closed {
 
 
 /**
- * Negative infinity as an endpoint for an [[Interval]]
+ * Negative infinity as an endpoint for an
+ * [[Interval]]
  *
  * @tparam T Type of the interval values
  */
@@ -199,7 +200,7 @@ object NegInfty {
 
 
 /**
- * Positive infinity as an endpoint for an [[cernoch.scalistics.Interval]]
+ * Positive infinity as an endpoint for an [[Interval]]
  *
  * @tparam T Type of the interval values
  */

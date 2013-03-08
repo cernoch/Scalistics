@@ -1,4 +1,4 @@
-package cernoch.scalistics
+package cernoch.scalistics.collection.immutable
 
 import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
@@ -10,15 +10,16 @@ class HistTest extends Specification {
 
   "Histogram" should {
 
-    val hist = new Hist[Int](TreeMap(0->1, 10->2), 3)
+    val hist = new Hist(TreeMap(0->1, 10->2), 3)
 
     "be created from the apply function" in {
-      Hist(1 to 10, List(3,6)) must_==
-        new Hist[Int](TreeMap(3->3, 6->3), 4)
+      Hist.small(List(3,6))(1 to 10) must_==
+        new Hist(TreeMap(3->3, 6->3), 4)
     }
 
-    "have no cutpoint if the apply receives empty number of cutPoints" in {
-      Hist(1 to 10, List()) mustEqual new Hist[Int](TreeMap(), 10)
+    "have no cut-point if the empty number of cut-points given" in {
+      Hist.small(List[Int]())(1 to 10) mustEqual
+				new Hist(TreeMap[Int,Int](), 10)
     }
 
     "represent interior values correctly" in {
@@ -44,8 +45,8 @@ class HistTest extends Specification {
 
   "Bin centres" should {
 
-    val hist = Hist(1 to 10, List(3,6))
-    val centres = hist.binCenters{(x,y) => (x+y)/2}
+    val hist = Hist.small(List(3,6))(1 to 10)
+    val centres = hist.binCenters((a,b) => (a + b) / 2)
 
     "be created correctly" in {
       val midPoint = (3+6)/2
@@ -56,8 +57,8 @@ class HistTest extends Specification {
     }
 
     "throw an exception on empty hist" in {
-      Hist(1 to 10, List()).binCenters{(x,y) => (x+y)/2} mustEqual
-        List(0)
+      Hist.small(List[Double]())(1 to 10 map {_.toDouble})
+				.binCenters((a,b) => (a + b) / 2) mustEqual List(0)
     }
   }
 }
