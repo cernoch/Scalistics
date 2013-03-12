@@ -195,7 +195,7 @@ object Hist {
 	(binCentr: Iterable[T])
 	(values:   Iterable[T])
 	= values.foldLeft(new Hist[T,Long](
-		new TreeMap() ++ binCentr.map{_ -> 0}, 0)
+		new TreeMap() ++ binCentr.map{_ -> 0L}, 0)
 	){_ + _}
 
 
@@ -203,7 +203,7 @@ object Hist {
 	(binCentr: Iterable[T])
 	(values:   Iterable[T])
 	= values.foldLeft(new Hist[T,BigInt](
-		new TreeMap() ++ binCentr.map{_ -> 0}, 0)
+		new TreeMap() ++ binCentr.map{_ -> BigInt(0)}, 0)
 	){_ + _}
 
 	def apply[T:Integral]

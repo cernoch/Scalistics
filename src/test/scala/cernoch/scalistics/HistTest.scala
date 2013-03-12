@@ -13,12 +13,12 @@ class HistTest extends Specification {
     val hist = new Hist(TreeMap(0->1, 10->2), 3)
 
     "be created from the apply function" in {
-      Hist.small(List(3,6))(1 to 10) must_==
+      Hist.int(List(3,6))(1 to 10) must_==
         new Hist(TreeMap(3->3, 6->3), 4)
     }
 
     "have no cut-point if the empty number of cut-points given" in {
-      Hist.small(List[Int]())(1 to 10) mustEqual
+      Hist.int(List[Int]())(1 to 10) mustEqual
 				new Hist(TreeMap[Int,Int](), 10)
     }
 
@@ -45,7 +45,7 @@ class HistTest extends Specification {
 
   "Bin centres" should {
 
-    val hist = Hist.small(List(3,6))(1 to 10)
+    val hist = Hist.int(List(3,6))(1 to 10)
     val centres = hist.binCenters((a,b) => (a + b) / 2)
 
     "be created correctly" in {
@@ -57,7 +57,7 @@ class HistTest extends Specification {
     }
 
     "throw an exception on empty hist" in {
-      Hist.small(List[Double]())(1 to 10 map {_.toDouble})
+      Hist.int(List[Double]())(1 to 10 map {_.toDouble})
 				.binCenters((a,b) => (a + b) / 2) mustEqual List(0)
     }
   }
