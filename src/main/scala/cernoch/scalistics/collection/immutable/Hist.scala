@@ -184,21 +184,30 @@ class Hist[T: Numeric, N: Numeric]
 
 object Hist {
 
-	def small[T:Numeric]
+	def int[T:Numeric]
 	(binCentr: Iterable[T])
 	(values:   Iterable[T])
 	= values.foldLeft(new Hist[T,Int](
 		new TreeMap() ++ binCentr.map{_ -> 0}, 0)
 	){_ + _}
 
-	def large[T:Numeric]
+	def long[T:Numeric]
 	(binCentr: Iterable[T])
 	(values:   Iterable[T])
-	= values.foldLeft(new Hist[T,Int](
+	= values.foldLeft(new Hist[T,Long](
 		new TreeMap() ++ binCentr.map{_ -> 0}, 0)
 	){_ + _}
 
-	def apply[T:Integral](bins: Int)
+
+	def bigInt[T:Numeric]
+	(binCentr: Iterable[T])
+	(values:   Iterable[T])
+	= values.foldLeft(new Hist[T,BigInt](
+		new TreeMap() ++ binCentr.map{_ -> 0}, 0)
+	){_ + _}
+
+	def apply[T:Integral]
+	(bins: Int)
 	(values: Iterable[T])
 	= {
 		val _i = implicitly[Integral[T]]; import _i._
