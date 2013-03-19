@@ -8,7 +8,7 @@ abstract class MinMax[T]
     protected def select(a: T,  b: T) : T
     protected def compare(a: T,  b: T) : Boolean
 
-    def apply = Option(value)
+    def apply() = Option(value)
 
     def +(v: T) = if (value == null || compare(v,value)) create(v) else this
     def ++(v: Iterable[T]) = v.foldLeft[Aggregator[T,T]](this)(_ + _)

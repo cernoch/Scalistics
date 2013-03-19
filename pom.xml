@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>cernoch.scalistics</groupId>
 	<artifactId>scalistics_${scala.version}</artifactId>
-	<version>0.2</version>
+	<version>1.0-SNAPSHOT</version>
 	<name>${project.artifactId}</name>
 	<description>Statistical library for Scala,
 		mostly non-parametric statistics</description>
@@ -22,8 +22,22 @@
 		<maven.compiler.target>1.5</maven.compiler.target>
 	</properties>
 
+	<scm><url>https://github.com/cernoch/Scalistics</url>
+		<connection>scm:git:https://github.com/cernoch/Scalistics.git</connection>
+		<developerConnection>scm:git:git@github.com:cernoch/Scalistics.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+	<distributionManagement><repository><id>heartofgold</id>
+		<url>scp://heartofgold.endofinternet.org:2222/srv/maven2</url>
+	</repository></distributionManagement>
+	<repositories>
+		<repository><id>heartofgold</id>
+			<url>http://heartofgold.endofinternet.org/maven2</url>
+		</repository>
+	</repositories>
+
 	<dependencies>
-		<!-- Main -->
+		<!-- Compile -->
 		<dependency><groupId>org.scala-lang</groupId>
 			<artifactId>scala-library</artifactId>
 			<version>${scala.version}.0</version></dependency>
@@ -63,6 +77,30 @@
 						<include>**/*Suite.*</include></includes>
 				</configuration>
 			</plugin>
+			<!-- Release tool -->
+			<plugin><groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<tagNameFormat>v@{project.version}</tagNameFormat>
+					<scmCommentPrefix>Release:</scmCommentPrefix>
+				</configuration>
+			</plugin>
+			<!-- SCM plugin (for GIT) -->
+			<plugin><groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-scm-plugin</artifactId>
+				<version>1.8.1</version>
+				<configuration>
+					<connectionType>developerConnection</connectionType>
+				</configuration>
+			</plugin>
 		</plugins>
+		<extensions>
+			<!-- SCP connector -->
+			<extension><groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh</artifactId>
+				<version>1.0</version>
+			</extension>
+		</extensions>
 	</build>
 </project>
